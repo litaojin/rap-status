@@ -1,0 +1,51 @@
+<div class="row">	
+	<div class="col-lg-1">
+		<i class="icon-refresh {{icon}}"></i>
+		<a href="" ng-click = "submit_refresh()"> Fresh</a>
+	</div>
+	<div class="col-lg-1">
+		<a href="" ng-click = "submit_refresh_H()">SS/P1</a>
+	</div>
+	<div class="col-lg-1">
+		<a href="" ng-click = "submit_NoBug()"> No BugID</a>
+	</div>
+	<div class="col-lg-1">
+		<a href="" ng-click = "submit_Huge()"> Huge CL</a>
+	</div>
+	<div class="col-lg-1">
+		<a href="" ng-click = "submit_LastWeek()">LastWeek </a>
+		<a href="" ng-click = "submit_LastWeek_H()">SS/P1</a>
+	</div>
+	<div class="col-lg-1">
+		<a href="" ng-click = "submit_LastDay()"> LastDay </a>
+		<a href="" ng-click = "submit_LastDay_H()">SS/P1</a>
+	</div>	
+	<div class="col-lg-2">
+		<div class="input-group">
+			<input class="form-control" type = "text" ng-model = "inputWK">
+			<span class="input-group-addon">WKs</span>			
+		</div>
+	</div>
+	<div class="col-lg-2">
+		<a class = "btn btn-primary" href="" ng-click = "submit_Query()")>Query</a>
+	</div>    
+</div>
+<hr>
+<div class="row"><strong>
+	<div class="col-lg-1"> CL </div>
+	<div class="col-lg-2"> Bug </div>	
+	<div class="col-lg-6"> Summary </div>
+	<div class="col-lg-1"> Submitter </div>	
+	<div class="col-lg-2"> Date </div>	
+</strong></div>
+                        
+<div class="row" ng-repeat="cl in CLs">
+	<div class="col-lg-1"> <a ng-href="#/branch/{{branch}}/cl/{{cl.CL}}"> {{cl.CL}} </a> </div>
+	<div class="col-lg-2"> 
+		<a target="_blank" ng-href="https://bugzilla.arubanetworks.com/show_bug.cgi?id={{cl.BUG}}">{{cl.BUG}}</a><a target="_blank" ng-href="#/bug/{{cl.BUG}}/branch">-{{cl.Bug_Priority}}</a>
+	</div>
+	<div class="col-lg-6"> {{cl.DESCRIPTION}} </div>
+	<div class="col-lg-1"> {{cl.SUBMITTER}} </div>
+	<div class="col-lg-2"> {{cl.SubmitDate}} </div>
+</div>
+<hr>

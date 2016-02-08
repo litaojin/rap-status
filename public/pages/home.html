@@ -1,0 +1,38 @@
+<div class="row"><strong>
+	<div class = "col-lg-2"> Branch Name </div>
+	<div class = "col-lg-2"> Release for </div>
+	<div class = "col-lg-1"> Bug</div>
+	<div class = "col-lg-1"> Origin </div>
+	<div class = "col-lg-1"> Head CL </div>
+	<div class = "col-lg-2"> Latest Update </div>
+	<div class = "col-lg-2"><a href="" ng-click = "refresh()"><i class="icon-refresh {{icon}}"></i></a> Latest Changed </div>
+	<div class = "col-lg-1"> Actions </div>		
+</strong></div>
+<div class="row" ng-repeat="branch in Branches ">
+	<div class = "col-lg-2"> <a ng-href="#/branch/{{branch.BranchName}}" > {{branch.BranchName}} </a> </div>
+	<div class = "col-lg-2"> {{branch.Release}} </div>
+	<div class = "col-lg-1">
+		<a ng-href="#/branch/{{branch.BranchName}}/bug" >{{branch.TotalBugs}}</a> -
+		<a ng-href="#/branch/{{branch.BranchName}}/nobug" >{{branch.TotalNoBugs}}</a>
+	</div>
+	<div class = "col-lg-1">{{branch.OriginBranch}} </div>
+	<div class = "col-lg-1">
+		<a target="_blank" href= "https://foreman.arubanetworks.com/cgi-bin/scm/describe.cgi?changelist={{branch.HeadCL}}"> {{branch.HeadCL}} </a>
+	</div>
+	<div class = "col-lg-2"> {{branch.LatestUpdate}} </div>
+	<div class = "col-lg-2"> 
+		<a ng-href="#/branch/{{branch.BranchName}}/after/24" >
+			{{branch.LatestCL}} - {{branch.TotalChangedCL}}-{{branch.updateCLsLast24}}
+		</a>
+	</div>
+	<div class = "col-lg-1"> 	
+		<a href="" ng-click = "branch_init($index)">ini</a>-<a href="" ng-click = "branch_update($index)">upd</a>-<a href="" ng-click = "branch_inc($index)">inc</a>
+	</div>	
+</div>
+
+<hr>
+<div class="row">
+	<div class = "col-lg-2"> <a href="" ng-click = "updateAll()" > Update All </a> </div>
+	<div class = "col-lg-2"> <a href="" ng-click = "updateIncAll()" > Inc Update All </a> </div>
+</div>
+

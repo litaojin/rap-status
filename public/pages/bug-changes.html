@@ -1,0 +1,33 @@
+<div class="row"><strong>
+	<div class="col-lg-1"> CL </div>
+	<div class="col-lg-1"><i class="icon-refresh {{icon}}"></i> Branch </div>	
+	<div class="col-lg-7"> Summary </div>
+	<div class="col-lg-1"> Submitter </div>	
+	<div class="col-lg-2"> Date </div>	
+</strong></div>
+                        
+<div class="row" ng-repeat="cl in CLs">
+	<div class="row">
+		<div class="col-lg-1">
+			<a target="_blank" href= "https://foreman.arubanetworks.com/cgi-bin/scm/describe.cgi?changelist={{cl.CL}}">
+				{{cl.CL}}
+			</a>
+		</div>
+		<div class="col-lg-1 text-center"> 
+			{{cl.BranchName}}
+		</div>			
+		<div class="col-lg-7"> {{cl.DESCRIPTION}} </div>
+		<div class="col-lg-1"> {{cl.SUBMITTER}} </div>
+		<div class="col-lg-2"> {{cl.SubmitDate}} </div>
+	</div>
+	<div class="row">
+		<div class="col-lg-1 text-right" ng-show="cl.inherit.length > 0"><i class="icon-circle-arrow-right"></i></div>
+		<div class="col-lg-11 text-right">
+			<div class="row">
+				<div class="col-lg-2 text-left" ng-repeat="br in cl.inherit"> {{br.branch}} </div>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+

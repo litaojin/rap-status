@@ -1,0 +1,81 @@
+<div class="row">
+	<div class = "col-lg-2"> Bug </div>
+	<div class = "col-lg-10">
+		<a ng-href="/#/bug/{{changeDetail.BUG}}/branch"> {{changeDetail.BUG}} </a>
+		<a target="_blank" href="https://bugzilla.arubanetworks.com/show_bug.cgi?id={{changeDetail.BUG}}"> in Bugzilla </a>
+	</div>
+</div>
+<div class="row">
+	<div class = "col-lg-2">  CL Description </div>
+	<div class = "col-lg-10"> {{changeDetail.DESCRIPTION}} </div>
+</div>
+<div class="row">
+	<div class = "col-lg-2"> CL Submitter </div>
+	<div class = "col-lg-10"> {{changeDetail.SUBMITTER}} </div>
+</div>
+<div class="row">
+	<div class = "col-lg-2">		
+		<a target="_blank" href= "https://foreman.arubanetworks.com/cgi-bin/scm/describe.cgi?changelist={{changeDetail.CL}}"> 
+			Affected Files [{{changeDetail.Num_DepotFile}}] 
+		</a>
+	</div>
+	<div class = "col-lg-10"> 
+		<div clss="row" ng-repeat = "file in changeDetail.DepotFile"><code>{{file}}</code></div>
+	</div>
+</div>
+
+<hr>
+<div class="row">
+	<div class="col-lg-2"><b>Integrate command</b>	
+	</div>
+	<div class="col-lg-10"> 
+		<code ng-bind="command"></code>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="col-lg-2"> 
+		<a class="btn btn-primary" href="" ng-click = "propagateTo()")> Propagate To </a>
+	</div>
+	<div class="col-lg-3"> 
+		<div class="input-group">
+			<span class="input-group-addon">Branch</span>
+			<input class="form-control" type = "text" ng-model = "inputBranch", placeholder = "branch to be propagated">
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="col-lg-2"> 
+		<a class="btn btn-primary" href="" ng-click = "revert()")>{{revertModeText}}</a>
+	</div>
+	<div class="col-lg-1"><i class="icon-refresh {{icon}}"></i></div>
+</div>
+<div class="row">
+	<div class="col-lg-2"></div>
+	<div class="col-lg-10">
+		<li ng-repeat = "file in DepotFiles">
+			<code>{{file.name}}</code>
+			<ul>
+				<div class="row" ng-repeat = "l in file.log track by $index">
+					<div ng-show = "(revertMode || l.reverted)">
+						<div class="col-lg-1"><i ng-show="l.reverted" class="icon-hand-right"></i></div>
+						<div class="col-lg-2">		
+							<a target="_blank" href= "https://foreman.arubanetworks.com/cgi-bin/scm/describe.cgi?changelist={{l.change}}">
+								#{{l.rev}} - {{l.change}} 
+							</a>
+						</div>
+						<div class="col-lg-3">by {{l.user}} at {{l.time}} </div>
+						<div class="col-lg-4">{{l.desc}} </div>
+					</div>
+				</div>				
+			</ul>
+		</li>
+	</div>
+</div>
+
+<hr>

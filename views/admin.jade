@@ -1,0 +1,40 @@
+extends layout
+block jscript
+  script(src='/js/admin.js')
+
+block title
+  title Instant Release Engineering
+
+block body
+  body(ng-app="adminApp")
+    .container(ng-controller="MainController")
+      .header
+        nav
+          ul.nav.nav-pills.pull-right
+            li
+              a(ng-href="/") Home
+            li
+              a(ng-href="/admin") Admin
+            li 
+              a(ng-href="/about") About
+
+      .jumbotron
+        h1.text-center(ng-bind = "Title")
+        p.text-center(ng-bind = "message")
+      .row
+        .col-lg-1
+          b p4 filelog
+        .col-lg-3
+          .input-group
+            span.input-group-addon Branch
+            input.form-control(type = "text", ng-model = "inputBranch", placeholder = "branch name")
+        
+        .col-lg-3
+          .input-group
+            span.input-group-addon CL
+            input.form-control(type = "text", ng-model = "inputFile", placeholder = "File")
+        .col-lg-2
+          a(href="", ng-click = "submit()") submit        
+      hr
+      .row
+        pre.pre-scrollable(ng-bind = "output")
