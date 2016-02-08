@@ -24,7 +24,7 @@ app.use(multer());
 app.use('/api', api);
 app.use('/wechat', wechat);
 app.get('/', function(req, res){  
-  res.render('index.html');  
+	res.render('index.html');  
 });
 
 app.use(function(err, req, res, next){
