@@ -1,15 +1,7 @@
-var app = angular.module('App', ['ngRoute']);
+var app = angular.module('App', []);
 
-app.config(function($routeProvider){
-	$routeProvider
-		.when('/', {
-			templateUrl: 'pages/home.html',
-			controller: 'HomeController'
-		})
-});
-
-app.controller('HomeController', function($rootScope, $scope, $http, $location){
-    $rootScope.Title = "Portal";
-    $rootScope.message = "Hello";        
+app.controller('MainController', function($scope, $http){
+    $scope.title = "Mobile Portal";
+    $scope.message = "Hello";        
 });
 
