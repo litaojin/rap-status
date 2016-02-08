@@ -8,21 +8,11 @@ block title
 block body
   body(ng-app="App")
     .container
-      .header
-        nav
-          ul.nav.nav-pills.pull-right
-            li
-              a(ng-href="#/") Home
-            li
-              a(ng-href="/admin") Admin
-            li 
-              a(ng-href="#/about") About
-
-      h1.text-center {{Title}}        
-      p.text-center {{message}}
-       
+      .row
+      	h1.text-center {{Title}}  
+      	h5.text-center {{message}}       
       hr
       .row(ng-view)
+    	.col-xs-4 Branch
+    	.col-xs-4 Submiited  
     
-      hr
-        
