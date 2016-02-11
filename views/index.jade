@@ -3,13 +3,13 @@ block jscript
   script(src='/js/main.js')
 
 block title
-  title Hello
+  title Instant Release Engineering
 
 block body
-	body(ng-app="App" ng-controller="MainController")
-    	.container
-      		.row
-      			h1.text-center {{Title}}  
-      			h5.text-center {{message}}       
-      		hr
+  body(ng-app="App" ng-controller="MainController")
+    .container-fluid(style = "margin-left:3%; margin-right:3%;")
+      .row
+        h1.text-center {{Title}}        
+        p.text-center {{message}}      
+      .row    
     
