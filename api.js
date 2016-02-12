@@ -7,6 +7,13 @@ router.get('/status/clean', function(req, res){
 	console.log('Clean');	
 });
 
+router.get('/status', function(req, res){
+	db.status.find().toArray(function(err, docs){
+      if(err) return next(err);
+
+      res.status(200).json(docs);      
+    }); 
+});
 router.post('/status', function(req, res, next){
 	console.dir(req.body);
 	db.status.insert(req.body, {w:1}, function(err, doc) {		
@@ -24,7 +31,13 @@ router.get('/wkload/clean', function(req, res){
 	res.status(200).end();
 	console.log('Clean');	
 });
+router.get('/wkload', function(req, res){
+	db.wkload.find().toArray(function(err, docs){
+      if(err) return next(err);
 
+      res.status(200).json(docs);      
+    }); 
+});
 router.post('/wkload', function(req, res, next){
 	console.dir(req.body);
 	db.wkload.insert(req.body, {w:1}, function(err, doc) {		
@@ -37,5 +50,6 @@ router.post('/wkload', function(req, res, next){
         }			
 	});	
 });
+
 
 module.exports = router;

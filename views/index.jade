@@ -7,7 +7,11 @@ block title
 
 block body
   body(ng-app="App" ng-controller="MainController")
-    .container-fluid(style = "margin-left:3%; margin-right:3%;")
+    .container-fluid(style="margin-left:3%; margin-right:3%;")
       .row
-        h1.text-center {{Title}}        
+        h4.text-center {{Title}}
+      .row
         p.text-center {{message}}
+      .row(ng-view)
+      
+
