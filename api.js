@@ -9,9 +9,9 @@ router.get('/status/clean', function(req, res){
 
 router.get('/status', function(req, res){
 	db.status.find().toArray(function(err, docs){
-      if(err) return next(err);
+    	if(err) return next(err);
 
-      res.status(200).json(docs);      
+      	res.status(200).json(docs);      
     }); 
 });
 router.post('/status', function(req, res, next){
@@ -33,9 +33,9 @@ router.get('/wkload/clean', function(req, res){
 });
 router.get('/wkload', function(req, res){
 	db.wkload.find().toArray(function(err, docs){
-      if(err) return next(err);
+    	if(err) return next(err);
 
-      res.status(200).json(docs);      
+      	res.status(200).json(docs);      
     }); 
 });
 router.post('/wkload', function(req, res, next){
