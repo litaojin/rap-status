@@ -34,7 +34,7 @@ router.use('/iap', wechat(config, wechat.text(function (message, req, res, next)
   //res.reply('Welcome to join, reply with: \n- 1: \n- 2: \n- 3: \n- 4:');
 
   console.dir(message);
-  str = '';
+  var str = '';
 
   if(message.Content === 'a'){
     console.log('a');
@@ -62,11 +62,25 @@ router.use('/iap', wechat(config, wechat.text(function (message, req, res, next)
   else if(message.Content === 'w'){
     console.log('w');
 
-    db.wkload.find().toArray(function(err, docs){
+    db.wkload_desc.find().toArray(function(err, docs){
       if(err) return next(err);
       
       for(var i in docs){
         str += docs[i].text + " " + docs[i].text2 + " : " + docs[i].sum + '\n';
+      }
+      
+      res.reply(str);
+    }); 
+
+  }  
+  else if(message.Content === 'p'){
+    console.log('p');
+
+    db.wkload.find().toArray(function(err, docs){
+      if(err) return next(err);
+      
+      for(var i in docs){
+        str += docs[i].developer.name + " " + docs[i].workload + '\n';
       }
       
       res.reply(str);
@@ -84,8 +98,22 @@ router.use('/iap', wechat(config, wechat.text(function (message, req, res, next)
       if(i1 < docs.length){
         str += docs[i1].BranchName + " latest @ " + docs[i1].LatestSubmitDate + '\n';
 
+        console.dir(docs[i1].changes);
+
         for(var j in docs[i1].changes){
-          str += docs[i1].changes[j] + '\n\n';
+          
+          var cl = docs[i1].changes[j];
+          //console.log(j);
+          //console.dir(docs[i1].changes[j]);
+          str += 'Bug ' + String(docs[i1].changes[j].BUG);
+
+          //console.log(str);
+
+          if(String(cl.TYPE) == 'BUG'){
+            str += '/' + String(cl.Bug_Priority);
+          }
+
+          str += '-' + cl.SUBMITTER + '\n' + cl.SUMMARY + '\n\n';
         }      
         res.reply(str);
       }

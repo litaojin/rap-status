@@ -1,16 +1,18 @@
-<div class="row"><strong><center>
-	<div class = "col-xs-2"> Branch </div>
+<div class="row"><strong>
+	<div class = "col-xs-2"> Branch </div><center>
 	<div class = "col-xs-6"> Latest Update </div>
 	<div class = "col-xs-4">Changed<br>24hr-1wk</div>	
 </center></strong></div>
 <div class="row" ng-repeat="branch in Branches ">
-	<div class = "col-xs-3"> <a href="" ng-click="show_changes($index)" > {{branch.BranchName}} </a> </div>
+	<div class = "col-xs-2"> <a href="" ng-click="show_changes($index)" > {{branch.BranchName}} </a> </div><center>
 	<div class = "col-xs-6"> {{branch.LatestSubmitDate}} </div>
-	<div class = "col-xs-3"> {{branch.Last24hrCLs}} - {{branch.Last1wksCLs}} </div>
-</div>
+	<div class = "col-xs-4"> {{branch.Last24hrCLs}} - {{branch.Last1wksCLs}} </div>
+</center></div>
 <hr>
 <div class="row" ng-repeat="change in Changes ">	
-	<div class = "col-xs-12"> {{change}} </div>
+	<div class = "col-xs-3"> Bug {{change.BUG}} / {{change.Bug_Priority}}</div>
+	<div class = "col-xs-3"> {{change.SUBMITTER}} </div>
+	<div class = "col-xs-6"> {{change.SUMMARY}} </div>
 </div>
 <hr>
 <div class="row" ng-repeat="wk in Wkloads ">

@@ -19,11 +19,7 @@ router.post('/status', function(req, res, next){
 	db.status.insert(req.body, {w:1}, function(err, doc) {		
 		if(err) return next(err);
 
-		if(doc === 1) {
-        	res.status(200).json(doc);
-        }else{
-        	res.status(401).json({name: 'UpdateError', message:'Update failed'});
-        }			
+        res.status(200).json(doc);
 	});	
 });
 router.get('/wkload/clean', function(req, res){
@@ -43,12 +39,8 @@ router.post('/wkload', function(req, res, next){
 	db.wkload.insert(req.body, {w:1}, function(err, doc) {		
 		if(err) return next(err);
 
-		if(doc === 1) {
-        	res.status(200).json(doc);
-        }else{
-        	res.status(401).json({name: 'UpdateError', message:'Update failed'});
-        }			
-	});	
+		res.status(200).json(doc);
+ 	});	
 });
 
 
