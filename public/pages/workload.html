@@ -1,0 +1,11 @@
+<table class="table table-condensed table-striped" >
+	<tr class="success" ><strong>
+		<th style="text-align:center; width:15%">Developer</th>		
+		<th style="text-align:center" ng-repeat = "rel in targets">{{rel.text}}<br>{{rel.text2}}</th>				
+	</strong></tr>
+	<tr ng-repeat = "wk in workloads" style="text-align:center">		
+		<td><strong> {{wk.developer.name}} </strong> </td>
+		<td ng-repeat = "count in wk.workload track by $index">{{count}}</td>
+	</tr>
+</table>
+

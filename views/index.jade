@@ -9,6 +9,9 @@ block body
   body(ng-app="App" ng-controller="MainController")
     .container-fluid(style="margin-left:3%; margin-right:3%;")
       .row
+        a(ng-href="#/") Summary /
+        a(ng-href="#/wkload") Workload
+      .row
         h4.text-center {{Title}}
       .row
         p.text-center {{message}}

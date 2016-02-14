@@ -6,7 +6,10 @@ app.config(function($routeProvider){
             templateUrl: 'pages/home.html',
             controller: 'HomeController'
         })
-
+        .when('/wkload', {
+            templateUrl: 'pages/workload.html',
+            controller: 'WorkloadController'
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -32,17 +35,41 @@ app.controller('HomeController', function($rootScope, $scope, $http){
     		console.log('APIGET status failed');    		
     	});
     $http
-        .get('/api/wkload')
+        .get('/api/wkload_desc')
         .success(function(data, status, header, config){
-            console.log('APIGET status');
+            console.log('APIGET wkload_desc');
             $scope.Wkloads = data;
         })
         .error(function(data, status, header, config){
-            console.log('APIGET status failed');            
+            console.log('APIGET wkload_desc failed');            
         });
     $scope.show_changes = function(index){
         $scope.Changes = $scope.Branches[index].changes;
+        $rootScope.message = $scope.Branches[index].BranchName; 
     }
 
 });
+app.controller('WorkloadController', function($rootScope, $scope, $http){
+    $rootScope.Title = "Bug Assignment";
+    $rootScope.message = "Hello"; 
+    $http
+        .get('/api/wkload_desc')
+        .success(function(data, status, header, config){
+            console.log('APIGET wkload_desc');
+            $scope.targets = data;
+            
+        })
+        .error(function(data, status, header, config){
+            console.log('APIGET wkload_desc failed');            
+        });
+    $http
+        .get('/api/wkload')
+        .success(function(data, status, header, config){
+            console.log('APIGET wkload');
+            $scope.workloads = data;
+        })
+        .error(function(data, status, header, config){
+            console.log('APIGET wkload failed');            
+        });    
 
+});

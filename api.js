@@ -1,31 +1,12 @@
 var router = require('express').Router();
 var db = require('./db');
 
-router.get('/status/clean', function(req, res){
-	db.status.remove();
-	res.status(200).end();
-	console.log('Clean');	
-});
-
 router.get('/status', function(req, res){
 	db.status.find().toArray(function(err, docs){
     	if(err) return next(err);
 
       	res.status(200).json(docs);      
     }); 
-});
-router.post('/status', function(req, res, next){
-	console.dir(req.body);
-	db.status.insert(req.body, {w:1}, function(err, doc) {		
-		if(err) return next(err);
-
-        res.status(200).json(doc);
-	});	
-});
-router.get('/wkload/clean', function(req, res){
-	db.wkload.remove();
-	res.status(200).end();
-	console.log('Clean');	
 });
 router.get('/wkload', function(req, res){
 	db.wkload.find().toArray(function(err, docs){
@@ -34,14 +15,12 @@ router.get('/wkload', function(req, res){
       	res.status(200).json(docs);      
     }); 
 });
-router.post('/wkload', function(req, res, next){
-	console.dir(req.body);
-	db.wkload.insert(req.body, {w:1}, function(err, doc) {		
-		if(err) return next(err);
+router.get('/wkload_desc', function(req, res){
+	db.wkload_desc.find().toArray(function(err, docs){
+    	if(err) return next(err);
 
-		res.status(200).json(doc);
- 	});	
+      	res.status(200).json(docs);      
+    }); 
 });
-
 
 module.exports = router;
